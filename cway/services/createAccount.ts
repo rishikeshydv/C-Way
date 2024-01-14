@@ -14,6 +14,13 @@ export const createAccount = () => {
     const newAccount = web3.eth.accounts.create();
     myWallet.add(account);
     console.log('New Account Created!')
+
+    //write a database query to add email, name, private key to the database for transaction purposes
+    //
+    //
+    //
+    //
+    
     }
 
 

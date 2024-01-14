@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Web3 from 'web3';
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
-import { fetchRate } from '@/components/conversion';
+import { fetchRate } from '@/services/conversion';
 
 export default function CryptoPay() {
 
