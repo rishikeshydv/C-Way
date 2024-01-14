@@ -8,15 +8,11 @@ import { fetchRate } from '@/components/conversion';
 export default function CryptoPay() {
 
   const [cryptoEqVal,setcryptoEqVal] = useState(0);
+
   //setting up etherium credentials
   //FROM WALLET
   const etheriumAPI = process.env['ethApi']   //this is the API to communicate with Etherium
   const etheriumPrivateKey = process.env['ethPrivateKey']   //this is sender's wallet private key for ethrium
-
-
-  //TO WALLET
-  const etherium2API = process.env['ethApi']   //this is the API to communicate with Etherium
-  const etherium2PrivateKey = process.env['ethPrivateKey']   //this is sender's wallet private key for ethrium
 
   const network ='Mainnet';
   const node = `https://eth.getblock.io/${etheriumAPI}/${network}/`
