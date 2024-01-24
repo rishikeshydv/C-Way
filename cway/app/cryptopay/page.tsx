@@ -14,7 +14,7 @@ export default function CryptoPay() {
   const etheriumAPI = process.env['ethApi']   //this is the API to communicate with Etherium
   const etheriumPrivateKey = process.env['ethPrivateKey']   //this is sender's wallet private key for ethrium
 
-  const network ='Mainnet';
+  const network ='testnet';
   const node = `https://eth.getblock.io/${etheriumAPI}/${network}/`
   const web3 = new Web3(node);
    
