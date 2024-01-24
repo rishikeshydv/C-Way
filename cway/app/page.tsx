@@ -23,9 +23,9 @@ export default function Home() {
         </div>
 
         <div>
-          <button className='bg-red-300 text-white'>
+          <a href="/cryptopay"><button className='bg-red-300 text-white'>
             Pay Via Crypto
-          </button>
+          </button> </a>
         </div>
 
       </div>

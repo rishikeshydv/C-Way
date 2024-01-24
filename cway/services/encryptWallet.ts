@@ -15,3 +15,6 @@ export const encryptAccount = (password) => {
     console.log('Wallet Encrypted')
     
 }
+
+
+//We havent used this service into the wallet yet.

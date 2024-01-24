@@ -18,17 +18,24 @@ async function createUser(
   });
 }
 
-export {createUser};
+async function findUser(_email: string){
+const user = await prisma.transactions.findFirst({
+  where:{
+    email:_email,
+  }
+})
+return user;
+}
 
-// you can import 'createUser' and run it on other code file
+function updateUser(_email:string){
+  prisma.transactions.update({
+    where: {
+      email:_email,
+    },
+    data: {
+      role:"enrolled"
+    }
+  })
+}
 
-
-// createUser(_email, _password, _role, _privateKey)
-//   .then(async () => {
-//     await prisma.$disconnect();
-//   })
-//   .catch(async (e) => {
-//     console.error(e);
-//     await prisma.$disconnect();
-//     process.exit(1);
-//   });
+export {prisma, createUser, findUser, updateUser};
