@@ -1,8 +1,6 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma, createUser, findUser } from "@/services/database";
-import { Account, User } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
