@@ -8,15 +8,23 @@ const network ='Mainnet';
 const node = `https://eth.getblock.io/${etheriumAPI}/${network}/`
 const web3 = new Web3(node);
 //creating a wallet
-const myWallet = new Web3.eth.accounts.wallet.create(0);
+const myWallet = new Web3.eth.accounts.wallet.create(1);
 
-//adding TO account to the wallet
+// Check if the toWallet account already exists in 'myWallet'
 if (etherium2PrivateKey !== undefined) {
-    const toWallet = web3.eth.accounts.privateKeyToAccount(etherium2PrivateKey);
-    web3.eth.accounts.wallet.add(toWallet);
-    // Now you can use toWallet for further operations
-  } else {
-    console.error('ethPrivateKey is undefined. Please check your environment variables.');  
+  const toWallet = web3.eth.accounts.privateKeyToAccount(etherium2PrivateKey)
+  const existingAccount = myWallet.find((toWallet:any) => toWallet.privateKey === etherium2PrivateKey);
+  //adding TO account to the wallet
+if (!existingAccount) {
+  //const toWallet = web3.eth.accounts.privateKeyToAccount(etherium2PrivateKey);
+  // Add the account to 'myWallet'
+  myWallet.add(toWallet);
+  // web3.eth.accounts.wallet.add(toWallet);
+  // Now you can use toWallet for further operations
+
+} else {
+  console.error('ethPrivateKey is undefined. Please check your environment variables. or The account already exists in the wallet');  
+}
 }
 
 export {myWallet};
