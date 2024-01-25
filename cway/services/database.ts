@@ -27,6 +27,15 @@ const user = await prisma.transactions.findFirst({
 return user;
 }
 
+async function findKey(_email: string){
+  const user = await prisma.transactions.findFirst({
+    where:{
+      email:_email,
+    }
+  })
+  return user?.privateKey;
+  }
+
 function updateUser(_email:string){
   prisma.transactions.update({
     where: {
@@ -38,4 +47,15 @@ function updateUser(_email:string){
   })
 }
 
-export {prisma, createUser, findUser, updateUser};
+function updateUserKey(_email:string,updatedKey:string){
+  prisma.transactions.update({
+    where: {
+      email:_email,
+    },
+    data: {
+      privateKey:updatedKey
+    }
+  })
+}
+
+export {prisma, createUser, findUser, updateUser, updateUserKey,findKey};
