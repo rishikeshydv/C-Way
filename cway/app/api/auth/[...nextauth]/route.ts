@@ -6,6 +6,13 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+      profile(profile){
+        return {
+          id: profile.sub,
+          email:profile.email,
+          role: profile.role ?? "random-user"
+        }
+      }
     }),
   ],
   callbacks: {
@@ -31,29 +38,21 @@ const handler = NextAuth({
       return true
     },
 
-    // async authorize(credentials, req) {
-    //     const { username, password } = credentials as any;
-    //     const res = await fetch("http://localhost:8000/auth/login", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         username,
-    //         password,
-    //       }),
-    //     });
-    // },
-    // const user = await res.json();
+    async jwt({token,user,trigger,session}){
+      if (user){
+        token.role == user.role
+      }
+      return token
+  },
 
-    //     console.log({ user });
+  async session({session,token}){
+      session.user.role = token.role
+    return session
+  }
+});
 
-    //     if (res.ok && user) {
-    //       return user;
-    //     } else return null;
-    // ),
-    })
+  
 
 //creating user-profile in the database
 
-export { handler as GET, handler as POST };
+export { handler};
